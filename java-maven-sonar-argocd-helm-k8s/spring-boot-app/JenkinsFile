@@ -23,7 +23,8 @@ pipeline {
 
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://host.docker.internal:9000"
+        // Update this URL to be the Docker network accessible URL for SonarQube
+        SONAR_URL = "http://sonarqube:9000" // 'sonarqube' is the container name from the Docker network
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
